@@ -1,0 +1,537 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.5),
+            rgba(0,0,0,0.5)
+        ),
+        #111;
+
+    color: white;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+.game {
+
+    width: 100%;
+
+    max-width: 1000px;
+
+    min-height: 650px;
+
+    background: #202020;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow: 0 0 40px rgba(0,0,0,0.7);
+
+}
+
+
+.screen {
+
+    display: none;
+
+    min-height: 650px;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+
+.screen.active {
+
+    display: block;
+
+}
+
+
+/* MENU */
+
+#menu {
+
+    display: none;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            rgba(0,80,0,0.75),
+            rgba(0,30,0,0.85)
+        );
+}
+
+
+#menu.active {
+
+    display: flex;
+
+}
+
+
+#menu h1 {
+
+    font-size: 45px;
+
+    margin-bottom: 20px;
+
+}
+
+
+#menu p {
+
+    font-size: 20px;
+
+    margin-bottom: 40px;
+
+}
+
+
+/* BOTÕES */
+
+button {
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 15px 25px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+button:hover {
+
+    transform: scale(1.05);
+
+}
+
+
+#menu button,
+#endScreen button {
+
+    background: #00c853;
+
+    color: white;
+
+    font-size: 20px;
+
+    padding: 18px 45px;
+
+}
+
+
+#menu button:hover,
+#endScreen button:hover {
+
+    background: #00e676;
+
+}
+
+
+/* CABEÇALHO */
+
+header {
+
+    background: #111;
+
+    padding: 20px;
+
+}
+
+
+header h1 {
+
+    margin-bottom: 15px;
+
+}
+
+
+.scoreboard {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 100px;
+
+    margin: 15px 0;
+
+}
+
+
+.scoreboard div {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.scoreboard span {
+
+    color: #aaa;
+
+}
+
+
+.scoreboard strong {
+
+    font-size: 35px;
+
+    color: #00e676;
+
+}
+
+
+/* CAMPO */
+
+.field {
+
+    position: relative;
+
+    height: 400px;
+
+    overflow: hidden;
+
+    background:
+
+        repeating-linear-gradient(
+            90deg,
+            #168a35 0px,
+            #168a35 80px,
+            #1a963d 80px,
+            #1a963d 160px
+        );
+
+    border-bottom: 8px solid white;
+
+}
+
+
+/* LINHAS DO CAMPO */
+
+.field::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 90%;
+
+    height: 50%;
+
+    border: 4px solid rgba(255,255,255,0.8);
+
+    border-bottom: none;
+
+    left: 5%;
+
+    bottom: 0;
+
+}
+
+
+/* GOL */
+
+.goal {
+
+    position: absolute;
+
+    top: 30px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 420px;
+
+    height: 190px;
+
+    border: 10px solid white;
+
+    border-bottom: 15px solid white;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 15px,
+            rgba(255,255,255,0.25) 16px
+        );
+
+    z-index: 2;
+
+}
+
+
+/* GOLEIRO */
+
+#keeper {
+
+    position: absolute;
+
+    font-size: 65px;
+
+    bottom: 20px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    transition: all 0.6s ease;
+
+    z-index: 5;
+
+}
+
+
+/* BOLA */
+
+#ball {
+
+    position: absolute;
+
+    bottom: 90px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 35px;
+
+    transition:
+        left 0.7s ease,
+        bottom 0.7s ease,
+        transform 0.7s ease;
+
+    z-index: 10;
+
+}
+
+
+/* JOGADOR */
+
+.player {
+
+    position: absolute;
+
+    bottom: 10px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 60px;
+
+    z-index: 3;
+
+}
+
+
+/* CONTROLES */
+
+.controls {
+
+    background: #111;
+
+    padding: 20px;
+
+}
+
+
+.controls h2 {
+
+    margin-bottom: 15px;
+
+}
+
+
+.directions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+}
+
+
+.directions button {
+
+    background: #eee;
+
+    color: #111;
+
+}
+
+
+.directions button:hover {
+
+    background: #00e676;
+
+}
+
+
+#message {
+
+    margin-top: 15px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    min-height: 25px;
+
+}
+
+
+/* TELA FINAL */
+
+#endScreen {
+
+    display: none;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+#endScreen.active {
+
+    display: flex;
+
+}
+
+
+#finalTitle {
+
+    font-size: 50px;
+
+    margin-bottom: 20px;
+
+}
+
+
+#finalMessage {
+
+    font-size: 24px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.finalScore {
+
+    font-size: 22px;
+
+    margin-bottom: 40px;
+
+}
+
+
+.finalScore p {
+
+    margin: 10px;
+
+}
+
+
+.finalScore strong {
+
+    color: #00e676;
+
+    font-size: 30px;
+
+}
+
+
+/* CELULAR */
+
+@media(max-width: 600px) {
+
+    .game {
+
+        border-radius: 0;
+
+        min-height: 100vh;
+
+    }
+
+    .screen {
+
+        min-height: 100vh;
+
+        padding: 15px;
+
+    }
+
+    #menu h1 {
+
+        font-size: 30px;
+
+    }
+
+    .scoreboard {
+
+        gap: 50px;
+
+    }
+
+    .goal {
+
+        width: 90%;
+
+    }
+
+    .directions {
+
+        flex-direction: column;
+
+    }
+
+    .directions button {
+
+        width: 100%;
+
+    }
+
+}
