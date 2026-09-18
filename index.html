@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Desafio dos Pênaltis</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="game">
+
+        <!-- MENU -->
+        <div id="menu" class="screen active">
+
+            <h1>⚽ DESAFIO DOS PÊNALTIS</h1>
+
+            <p>
+                Escolha onde bater e tente marcar o gol!
+            </p>
+
+            <button onclick="startGame()">
+                JOGAR
+            </button>
+
+        </div>
+
+
+        <!-- JOGO -->
+        <div id="gameScreen" class="screen">
+
+            <header>
+
+                <h1>⚽ Disputa de Pênaltis</h1>
+
+                <div class="scoreboard">
+
+                    <div>
+                        <span>Você</span>
+                        <strong id="playerScore">0</strong>
+                    </div>
+
+                    <div>
+                        <span>Goleiro</span>
+                        <strong id="keeperScore">0</strong>
+                    </div>
+
+                </div>
+
+                <p>
+                    Cobrança:
+                    <span id="shotNumber">1</span>/5
+                </p>
+
+            </header>
+
+
+            <!-- CAMPO -->
+
+            <div class="field">
+
+                <div class="goal">
+
+                    <div class="net"></div>
+
+                    <div id="keeper">
+                        🧤
+                    </div>
+
+                </div>
+
+
+                <div id="ball">
+                    ⚽
+                </div>
+
+
+                <div class="player">
+                    🧍
+                </div>
+
+            </div>
+
+
+            <!-- CONTROLES -->
+
+            <div class="controls">
+
+                <h2>Escolha a direção:</h2>
+
+                <div class="directions">
+
+                    <button onclick="shoot('left')">
+                        ↖ ESQUERDA
+                    </button>
+
+                    <button onclick="shoot('center')">
+                        ⬆ CENTRO
+                    </button>
+
+                    <button onclick="shoot('right')">
+                        ↗ DIREITA
+                    </button>
+
+                </div>
+
+                <p id="message">
+                    Escolha onde bater!
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FINAL -->
+
+        <div id="endScreen" class="screen">
+
+            <h1 id="finalTitle">
+                FIM DE JOGO
+            </h1>
+
+            <p id="finalMessage"></p>
+
+            <div class="finalScore">
+
+                <p>
+                    Seus gols:
+                    <strong id="finalPlayerScore">0</strong>
+                </p>
+
+                <p>
+                    Defesas:
+                    <strong id="finalKeeperScore">0</strong>
+                </p>
+
+            </div>
+
+            <button onclick="startGame()">
+                JOGAR NOVAMENTE
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
